@@ -5,14 +5,20 @@ import { ConfigProvider } from 'antd'
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
 import zhCN from 'antd/locale/zh_CN'
-// import styles from './index.module.css'
+import { Provider } from 'react-redux'
+import store, { persistor } from '@/redux/store'
+import { PersistGate } from 'redux-persist/integration/react'
 
 dayjs.locale('zh-cn')
 
 const App: FC = () => {
   return (
     <ConfigProvider locale={zhCN}>
-      <RouterProvider router={router} />
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <RouterProvider router={router} />
+        </PersistGate>
+      </Provider>
     </ConfigProvider>
   )
 }

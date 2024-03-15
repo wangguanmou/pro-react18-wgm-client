@@ -3,15 +3,19 @@ import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/i
 import { Menu, Layout } from 'antd'
 import styles from './nav.module.less'
 import logo from '@/assets/images/react.svg'
+import { useAppSelector } from '@/redux/hooks'
+import { selectCollapsed } from '@/redux/slice/system'
 
 const { Sider } = Layout
 
 const RootNav: FC = () => {
+  const collapsed = useAppSelector(selectCollapsed)
+
   return (
-    <Sider className={styles.nav} trigger={null} collapsible collapsed={false}>
+    <Sider className={styles.nav} collapsible collapsed={collapsed}>
       <div className={styles.logoBox}>
         <img className={styles.logoImg} src={logo} alt="logo" />
-        <span>React管理系统</span>
+        {!collapsed && <span className={styles.logoText}>React管理系统</span>}
       </div>
       <Menu
         theme="dark"
@@ -20,26 +24,17 @@ const RootNav: FC = () => {
         items={[
           {
             key: '1',
-            icon: (
-              <UserOutlined onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} />
-            ),
+            icon: <UserOutlined />,
             label: 'nav 1',
           },
           {
             key: '2',
-            icon: (
-              <VideoCameraOutlined
-                onPointerEnterCapture={undefined}
-                onPointerLeaveCapture={undefined}
-              />
-            ),
+            icon: <VideoCameraOutlined />,
             label: 'nav 2',
           },
           {
             key: '3',
-            icon: (
-              <UploadOutlined onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} />
-            ),
+            icon: <UploadOutlined />,
             label: 'nav 3',
           },
         ]}
