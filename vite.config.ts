@@ -10,4 +10,9 @@ export default defineConfig({
       '@': path.resolve('./src'),
     },
   },
+  css: {
+    modules: {
+      localsConvention: 'camelCaseOnly' /* module编译生效 */,
+    },
+  },
 })
