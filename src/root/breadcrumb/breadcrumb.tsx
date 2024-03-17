@@ -1,29 +1,12 @@
-import { HomeOutlined, UserOutlined } from '@ant-design/icons'
 import React from 'react'
 import { Breadcrumb } from 'antd'
+import { useAppSelector } from '@/redux/hooks'
+import { selectBreadcrumb } from '@/redux/slice/permission'
 
-const RootBreadcrumb: React.FC = () => (
-  <Breadcrumb
-    separator=">"
-    items={[
-      {
-        href: '',
-        title: <HomeOutlined />,
-      },
-      {
-        href: '',
-        title: (
-          <>
-            <UserOutlined />
-            <span>Application List</span>
-          </>
-        ),
-      },
-      {
-        title: 'Application',
-      },
-    ]}
-  />
-)
+const RootBreadcrumb: React.FC = () => {
+  const breadcrumb = useAppSelector(selectBreadcrumb)
+
+  return <Breadcrumb separator=">" items={breadcrumb} />
+}
 
 export default RootBreadcrumb
