@@ -10,9 +10,10 @@ export const routes: Routes = [
   {
     path: '/login',
     async lazy() {
-      const { default: Component } = await import('@/views/auth/login')
+      const { default: Component, action } = await import('@/views/auth/login')
       return {
         Component,
+        action,
       }
     },
     // 非路由配置
@@ -22,9 +23,10 @@ export const routes: Routes = [
   {
     path: '/registry',
     async lazy() {
-      const { default: Component } = await import('@/views/auth/registry')
+      const { default: Component, action } = await import('@/views/auth/registry')
       return {
         Component,
+        action,
       }
     },
     // 非路由配置
