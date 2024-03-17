@@ -14,13 +14,13 @@ export const permissionSlice = createSlice({
   name: 'permission',
   initialState,
   reducers: {
-    setBreadcrumb: (state, action: PayloadAction<Breadcrumb>) => {
+    breadcrumbCreator: (state, action: PayloadAction<Breadcrumb>) => {
       state.breadcrumb = action.payload
     },
   },
 })
 
-export const { setBreadcrumb } = permissionSlice.actions
+export const { breadcrumbCreator } = permissionSlice.actions
 
 export const selectBreadcrumb = (state: RootState) => state.permission.breadcrumb
 

@@ -1,11 +1,7 @@
 import React from 'react'
 import { Breadcrumb } from 'antd'
-import { useAppSelector } from '@/redux/hooks'
-import { selectBreadcrumb } from '@/redux/slice/permission'
 
-const RootBreadcrumb: React.FC = () => {
-  const breadcrumb = useAppSelector(selectBreadcrumb)
-
+const RootBreadcrumb: React.FC<{ breadcrumb: any[] }> = ({ breadcrumb }) => {
   return <Breadcrumb separator=">" items={breadcrumb} />
 }
 

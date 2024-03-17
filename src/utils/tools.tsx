@@ -18,7 +18,9 @@ export const str2CodePoint = (str: string): string => {
   }
   return s
 }
-
+/**
+ *
+ */
 export const getMenuItems = (
   routes: IMenuItem[],
   role: Role,
@@ -55,7 +57,7 @@ export const getMenuItems = (
   return arr
 }
 
-export const getDefaultOpenKeys = (
+export const getOpenKeys = (
   routes: IMenuItem[],
   pathname: string,
   result: string[] = [],
@@ -66,7 +68,7 @@ export const getDefaultOpenKeys = (
       return result
     }
     if (route.children) {
-      const res = getDefaultOpenKeys(route.children, pathname, result)
+      const res = getOpenKeys(route.children, pathname, result)
       if (res.length) {
         result.unshift(route.key)
         return result
@@ -117,4 +119,33 @@ export const getBreadcrumb = (routes: IMenuItem[], pathname: string, result: any
     }
   }
   return result
+}
+
+export const getWhiteList = (
+  routes: IMenuItem[],
+  role: Role,
+  set: Set<string> = new Set(),
+): Set<string> => {
+  for (const route of routes) {
+    if (route.path && (!route.roles || route.roles.includes(role))) {
+      set.add(route.path)
+    }
+    if (Array.isArray(route.children) && route.children.length) {
+      getWhiteList(route.children, role, set)
+    }
+  }
+  return set
+}
+
+export const getAllPathnameList = (
+  routes: IMenuItem[],
+  set: Set<string> = new Set(),
+): Set<string> => {
+  for (const route of routes) {
+    route.path && set.add(route.path)
+    if (Array.isArray(route.children) && route.children.length) {
+      getAllPathnameList(route.children, set)
+    }
+  }
+  return set
 }

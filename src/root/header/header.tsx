@@ -8,7 +8,7 @@ import { useAppSelector, useAppDispatch } from '@/redux/hooks'
 import { switchCollapsed, selectCollapsed } from '@/redux/slice/system'
 
 const { Header } = Layout
-const RootHeader: FC = () => {
+const RootHeader: FC<{ breadcrumb: any[] }> = ({ breadcrumb }) => {
   const collapsed = useAppSelector(selectCollapsed)
   const dispatch = useAppDispatch()
 
@@ -26,7 +26,7 @@ const RootHeader: FC = () => {
             height: 64,
           }}
         />
-        <RootBreadcrumb />
+        <RootBreadcrumb breadcrumb={breadcrumb} />
       </div>
       <RootOpts />
     </Header>

@@ -1,7 +1,9 @@
+import { Navigate } from 'react-router-dom'
 import type { Routes } from '@/types/permission'
 import Root from '@/root/root'
 import Home from '@/views/home'
-import ErrorPage from '@/views/error/error-page'
+import Error500 from '@/views/error/error-500'
+import { loader as loaderRoot } from '@/root/root'
 
 export const routes: Routes = [
   // 登录
@@ -32,9 +34,11 @@ export const routes: Routes = [
   {
     path: '/',
     element: <Root />,
+    loader: loaderRoot,
+    errorElement: <Error500 />,
     children: [
       {
-        errorElement: <ErrorPage />,
+        errorElement: <Error500 />,
         children: [
           {
             index: true,
@@ -57,12 +61,13 @@ export const routes: Routes = [
   {
     path: '/',
     element: <Root />,
+    loader: loaderRoot,
     // 非路由配置
     label: '用户管理',
     icon: 'TeamOutlined',
     children: [
       {
-        errorElement: <ErrorPage />,
+        errorElement: <Error500 />,
         children: [
           {
             path: '/user-info',
@@ -103,11 +108,12 @@ export const routes: Routes = [
   {
     path: '/',
     element: <Root />,
+    loader: loaderRoot,
     label: '地图展示',
     icon: 'MediumOutlined',
     children: [
       {
-        errorElement: <ErrorPage />,
+        errorElement: <Error500 />,
         children: [
           {
             path: '/b-map',
@@ -139,6 +145,7 @@ export const routes: Routes = [
   {
     path: '/',
     element: <Root />,
+    loader: loaderRoot,
     hidden: true,
     children: [
       {
@@ -158,6 +165,10 @@ export const routes: Routes = [
             Component,
           }
         },
+      },
+      {
+        path: '*',
+        element: <Navigate to="/404" replace />,
       },
     ],
   },
