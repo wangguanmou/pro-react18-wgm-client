@@ -8,14 +8,14 @@ import { request } from '@/utils/request'
 export const getUserInfo = () =>
   request<null, BaseResponse<User>>({
     method: 'get',
-    url: '/my/userinfo',
+    url: '/userinfo',
   })
 
 // 修改用户信息
 export const updateUserInfo = (data: FormData) =>
   request<null, BaseResponse>({
     method: 'patch',
-    url: '/my/userinfo',
+    url: '/userinfo',
     data,
   })
 
@@ -23,7 +23,7 @@ export const updateUserInfo = (data: FormData) =>
 export const updatePassword = (data: FormData) =>
   request<null, BaseResponse>({
     method: 'PATCH',
-    url: '/my/updatepwd',
+    url: '/updatepwd',
     data,
   })
 
@@ -31,6 +31,6 @@ export const updatePassword = (data: FormData) =>
 export const updateAvatar = (data: FormData) =>
   request<null, BaseResponse>({
     method: 'PATCH',
-    url: '/my/update/avatar',
+    url: '/update/avatar',
     data,
   })

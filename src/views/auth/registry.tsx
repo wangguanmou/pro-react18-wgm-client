@@ -77,6 +77,7 @@ const Registry: FC = () => {
               type="primary"
               htmlType="submit"
               loading={navigation.state !== 'idle' && { delay: 200 }}
+              disabled={navigation.state !== 'idle'}
             >
               Register
             </Button>

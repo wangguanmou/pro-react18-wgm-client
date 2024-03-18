@@ -7,13 +7,13 @@ import { requestApi } from '@/utils/request'
 export const registry = (data: FormData) =>
   requestApi<null, BaseResponse>({
     method: 'post',
-    url: '/api/registry',
+    url: '/registry',
     data,
   })
 
 export const login = (data: FormData) =>
   requestApi<null, BaseResponse<string>>({
     method: 'post',
-    url: '/api/login',
+    url: '/login',
     data,
   })
